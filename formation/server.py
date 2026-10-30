@@ -12,4 +12,5 @@ class H(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
     def log_message(self, *a): pass
-http.server.ThreadingHTTPServer(("0.0.0.0", int(os.environ.get("PORT", "8080"))), H).serve_forever()
+port = os.environ.get("ATO_ENDPOINT_HTTP_PORT", os.environ.get("PORT", "8080"))
+http.server.ThreadingHTTPServer(("0.0.0.0", int(port)), H).serve_forever()
